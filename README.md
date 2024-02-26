@@ -35,7 +35,8 @@ node server
 
 
 ## Structure de base de données
-Collections: produits / users
+
+DBName : ProductsDB
 
 ### Collection Produits :
 | Field        | Data Type | Constraints |
