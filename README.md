@@ -37,19 +37,20 @@ node server
 ## Structure de base de données
 Collections: produits / users
 
-### Produits :
-name -> String
+### Collection Produits :
+| Field        | Data Type | Constraints |
+|--------------|-----------|-------------|
+| name         | String    |             |
+| description  | String    |             |
+| price        | Float     | Float (>0)  |
+| stock        | Int       | Int (>0)    |
 
-description -> String
+### Collection Users: 
+| Field      | Data Type | Constraints    |
+|------------|-----------|----------------|
+| username   | String    | String (unique)|
+| password   | String    |                |
 
-price -> Float [>0]
-
-stock -> Int [>0]
-
-### Users: 
-username -> String [unique]
-
-password -> String
 ## Endpoints
 ### Authentification :
 
