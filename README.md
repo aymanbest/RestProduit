@@ -1,5 +1,5 @@
 
-# API Rest avec Aunthentification
+# API Rest avec Authentification
 
 Cette API permet aux utilisateurs d'effectuer des opérations CRUD sur les produits.
 
