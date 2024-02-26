@@ -2,16 +2,16 @@ const express = require('express');
 const productRoutes = require('./productRoutes'); // Importer le routeur d'authentification
 const { MongoClient } = require('mongodb');
 const { verify } = require('crypto');
+const Auth = require('./auth').Auth;
 
 const app = express();
 const url = 'mongodb://127.0.0.1:27017';
 const dbName = 'ProductsDB';
-let db;
 
 // Middleware pour le parsing du corps de la requête
 app.use(express.json());
 
-app.use('/produit', productRoutes);
+app.use('/produit', productRoutes, Auth);
 // Middleware pour la connexion à la base de données MongoDB
 MongoClient.connect(url)
     .then((client) => {
