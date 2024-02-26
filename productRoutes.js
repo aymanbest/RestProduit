@@ -22,7 +22,7 @@ router.get('/:id',verifyToken, async (req, res) => {
         const product = await collection.findOne({ _id: new ObjectId(req.params.id) })
         res.json(product)
     } catch(e) {
-        console.log(e.message);
+        res.json(e.message);
     }
 })
 
@@ -51,6 +51,24 @@ router.put('/:id', verifyToken, async (req, res) => {
         console.log(e.message);
     }
 })
+
+
+router.delete('/:id', async (req, res) => {
+    const db = req.app.locals.db;
+    const collection = db.collection('produits');
+    const id = parseInt(req.params.id);
+    try {
+        const result = await collection.deleteOne({ _id: new ObjectId(req.params.id) });
+        if (result.deletedCount === 1) {
+            res.status(200).send('produit deleted successfully');
+        } else {
+            res.status(404).send('produit not found');
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error deleting produit');
+    }
+});
 
 
 module.exports = router
