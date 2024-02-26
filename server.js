@@ -13,8 +13,6 @@ const dbName = 'ProductsDB';
 app.use(express.json());
 
 app.use('/produit', productRoutes , Auth);
-//app.use('/produit', Auth);
-//app.use(verifyToken);
 // Middleware pour la connexion à la base de données MongoDB
 MongoClient.connect(url)
     .then((client) => {

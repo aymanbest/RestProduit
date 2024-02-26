@@ -4,38 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const Auth = express.Router();
 
-async function authenticateUser(username, password, db) {
-    const utilisateursCollection = db.collection('users');
-    const user = await utilisateursCollection.findOne({ username: username });
-
-    if (!user) {
-        return null; // Utilisateur non trouvé
-    }
-
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    console.log(passwordMatch);
-    if (passwordMatch) {
-        return user; // Authentification réussie
-    } else {
-        return null; // Mot de passe incorrect
-    }
-}
-
-function verifyToken(req, res, next) {
-    const token = req.headers.authorization;
-    if (!token) {
-        return res.status(401).send('Access denied. No token provided.');
-    }
-
-    try {
-        const decoded = jwt.verify(token, 'secretkey');
-        req.user = decoded;
-        next();
-    } catch (error) {
-        return res.status(403).send('Invalid token.');
-    }
-}
-
+// Route for user authentication
 Auth.post('/login', async (req, res) => {
     const { username, password } = req.body;
     console.log('ok');
@@ -60,6 +29,7 @@ Auth.post('/login', async (req, res) => {
     }
 });
 
+// Route for user registration
 Auth.post('/register', async (req, res) => {
     const { username, password } = req.body;
     const db = req.app.locals.db;
@@ -86,4 +56,5 @@ Auth.post('/register', async (req, res) => {
     }
 });
 
-module.exports = {Auth, verifyToken};
+// Exporting the Auth router and verifyToken middleware
+module.exports = { Auth, verifyToken };
