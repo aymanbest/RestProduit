@@ -1,6 +1,7 @@
 const express = require('express');
 const productRoutes = require('./productRoutes'); // Importer le routeur d'authentification
 const { MongoClient } = require('mongodb');
+const { verify } = require('crypto');
 
 const app = express();
 const url = 'mongodb://127.0.0.1:27017';
@@ -26,4 +27,5 @@ MongoClient.connect(url)
     .catch((err) => {
         console.log('Failed to connect to the database.', err);
     });
+
 

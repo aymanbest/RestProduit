@@ -1,4 +1,5 @@
 const express = require('express')
+const verifyToken = require("./auth").verifyToken;
 const { ObjectId } = require('mongodb')
 const router = express.Router()
 
@@ -27,3 +28,7 @@ router.get('/:id', async (req, res) => {
 
 
 module.exports = router
+
+
+
+
