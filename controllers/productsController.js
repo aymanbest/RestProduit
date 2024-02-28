@@ -1,4 +1,4 @@
-const verifyToken = require("./auth").verifyToken;
+const verifyToken = require("../auth/auth").verifyToken;
 const { ObjectId } = require("mongodb");
 
 const allProducts = async (req, res) => {

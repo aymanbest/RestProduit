@@ -1,7 +1,7 @@
 const express = require('express')
-const verifyToken = require("./auth").verifyToken;
+const verifyToken = require("../auth/auth").verifyToken;
 const { ObjectId } = require('mongodb')
-const productController = require('./productsController')
+const productController = require('../controllers/productsController')
 const router = express.Router()
 
 // Get all products
